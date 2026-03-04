@@ -1,0 +1,22 @@
+export function checkPasswordStrength(password) {
+    if (typeof password !== 'string' || password.length === 0) {
+      return "weak";
+    }
+  
+    let score = 0;
+  
+    // 2. Evaluate Criteria
+    if (password.length >= 8) score++;
+    if (/[A-Z]/.test(password)) score++;
+    if (/[a-z]/.test(password)) score++;
+    if (/[0-9]/.test(password)) score++;
+    if (/[!@#$%^&*()_+\-=[\]{}|;:,.<>?]/.test(password)) score++;
+  
+    // 3. Map Score to Strength Level
+    if (score <= 1) return "weak";
+    if (score <= 3) return "medium";
+    if (score === 4) return "strong";
+    return "very strong"; // Score is 5
+  }
+  
+console.log(checkPasswordStrength("Navdeep@@2006"));
